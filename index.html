@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ed Cosméticos</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --lavender:#c8b5ee;
+    --lavender-light:#e0d6f7;
+    --lavender-dark:#9e85d4;
+    --cream:#e6e5dd;
+    --dark:#32353c;
+    --dark-soft:#4a4d56;
+    --white:#faf9f7;
+  }
+  body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--dark);overflow-x:hidden}
+  a{text-decoration:none;color:inherit}
+ 
+  /* NAV */
+  nav{
+    background:var(--white);
+    border-bottom:1px solid var(--cream);
+    padding:0 3rem;
+    height:68px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:sticky;top:0;z-index:100;
+  }
+  .logo{
+    font-family:'Playfair Display',serif;
+    font-size:1.5rem;
+    font-weight:600;
+    color:var(--dark);
+    letter-spacing:-.5px;
+  }
+  .logo span{color:var(--lavender-dark)}
+  .nav-links{display:flex;gap:2rem;align-items:center}
+  .nav-links a{
+    font-size:.85rem;font-weight:500;
+    color:var(--dark-soft);letter-spacing:.02em;
+    text-transform:uppercase;transition:color .2s;
+  }
+  .nav-links a:hover{color:var(--lavender-dark)}
+  .nav-icons{display:flex;gap:.75rem;align-items:center}
+  .nav-icon-btn{
+    width:38px;height:38px;
+    border-radius:50%;
+    border:1.5px solid var(--cream);
+    background:transparent;
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;color:var(--dark);
+    font-size:1.2rem;transition:all .2s;
+  }
+  .nav-icon-btn:hover{background:var(--lavender-light);border-color:var(--lavender)}
+  .cart-wrap{position:relative}
+  .cart-badge{
+    position:absolute;top:-4px;right:-4px;
+    background:var(--lavender-dark);
+    color:#fff;font-size:.6rem;font-weight:700;
+    width:16px;height:16px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    pointer-events:none;
+  }
+ 
+  /* HERO */
+  .hero{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    min-height:520px;
+    background:var(--cream);
+    overflow:hidden;
+  }
+  .hero-text{
+    padding:5rem 3rem 4rem 3.5rem;
+    display:flex;flex-direction:column;justify-content:center;
+  }
+  .hero-badge{
+    display:inline-flex;align-items:center;gap:.5rem;
+    background:var(--lavender-light);
+    color:var(--lavender-dark);
+    font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+    padding:.4rem 1rem;border-radius:100px;
+    margin-bottom:1.5rem;width:fit-content;
+  }
+  .hero h1{
+    font-family:'Playfair Display',serif;
+    font-size:3.2rem;line-height:1.1;font-weight:600;
+    color:var(--dark);margin-bottom:1.25rem;
+  }
+  .hero h1 em{color:var(--lavender-dark);font-style:italic}
+  .hero p{
+    font-size:1rem;line-height:1.7;
+    color:var(--dark-soft);max-width:420px;
+    margin-bottom:2.5rem;
+  }
+  .hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
+  .btn-primary{
+    background:var(--dark);color:var(--white);
+    padding:.85rem 2rem;border-radius:100px;
+    font-size:.875rem;font-weight:500;letter-spacing:.02em;
+    border:none;cursor:pointer;transition:all .2s;
+    display:inline-flex;align-items:center;gap:.5rem;
+  }
+  .btn-primary:hover{background:var(--lavender-dark)}
+  .btn-outline{
+    background:transparent;color:var(--dark);
+    padding:.85rem 2rem;border-radius:100px;
+    font-size:.875rem;font-weight:500;
+    border:1.5px solid var(--dark);cursor:pointer;transition:all .2s;
+  }
+  .btn-outline:hover{border-color:var(--lavender-dark);color:var(--lavender-dark)}
+ 
+  /* HERO VISUAL */
+  .hero-visual{
+    background:var(--lavender);
+    position:relative;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .hero-visual-inner{
+    position:relative;z-index:1;
+    text-align:center;padding:2rem;
+  }
+  .hero-circle{
+    width:260px;height:260px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.25);
+    display:flex;align-items:center;justify-content:center;
+    margin:0 auto;
+    border:1px solid rgba(255,255,255,0.4);
+  }
+  .hero-circle-inner{
+    width:200px;height:200px;border-radius:50%;
+    background:rgba(255,255,255,0.35);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--dark);
+  }
+  .hero-circle-inner i{font-size:5rem;color:var(--lavender-dark)}
+  .hero-float-tag{
+    position:absolute;
+    background:var(--white);
+    border-radius:12px;
+    padding:.6rem 1rem;
+    font-size:.8rem;font-weight:500;
+    box-shadow:0 4px 20px rgba(50,53,60,.1);
+    display:flex;align-items:center;gap:.5rem;
+  }
+  .hero-float-tag .dot{width:8px;height:8px;border-radius:50%;background:var(--lavender-dark);flex-shrink:0}
+  .hero-float-1{top:18%;right:5%}
+  .hero-float-2{bottom:22%;left:5%}
+  .hero-deco{
+    position:absolute;
+    border-radius:50%;
+    background:rgba(255,255,255,0.12);
+  }
+  .hero-deco-1{width:300px;height:300px;top:-80px;right:-80px}
+  .hero-deco-2{width:180px;height:180px;bottom:-40px;left:-40px}
+ 
+  /* CATEGORIAS */
+  .section{padding:4rem 3.5rem}
+  .section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:2rem}
+  .section-title{
+    font-family:'Playfair Display',serif;
+    font-size:1.75rem;font-weight:600;
+  }
+  .section-link{
+    font-size:.85rem;color:var(--lavender-dark);font-weight:500;
+    display:flex;align-items:center;gap:.25rem;
+    transition:gap .2s;cursor:pointer;
+  }
+  .section-link:hover{gap:.5rem}
+  .cats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+  .cat-card{
+    background:var(--cream);
+    border-radius:16px;padding:1.75rem 1.5rem;
+    cursor:pointer;transition:all .25s;
+    position:relative;overflow:hidden;
+  }
+  .cat-card::before{
+    content:'';position:absolute;
+    top:0;left:0;right:0;
+    height:3px;background:var(--lavender);
+    transform:scaleX(0);transition:transform .25s;
+  }
+  .cat-card:hover{background:var(--lavender-light);transform:translateY(-3px)}
+  .cat-card:hover::before{transform:scaleX(1)}
+  .cat-icon{
+    width:52px;height:52px;border-radius:14px;
+    background:var(--lavender-light);
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:1rem;
+  }
+  .cat-icon i{font-size:1.6rem;color:var(--lavender-dark)}
+  .cat-name{font-weight:500;font-size:.95rem;margin-bottom:.25rem}
+  .cat-count{font-size:.8rem;color:var(--dark-soft)}
+ 
+  /* PRODUTOS */
+  .products-section{background:var(--white);padding:4rem 3.5rem}
+  .tabs{display:flex;gap:.5rem;margin-bottom:2rem;border-bottom:1px solid var(--cream);padding-bottom:0}
+  .tab{
+    padding:.65rem 1.25rem;font-size:.875rem;font-weight:500;
+    cursor:pointer;border-radius:8px 8px 0 0;
+    color:var(--dark-soft);transition:all .2s;
+    border:none;background:transparent;
+    border-bottom:2px solid transparent;margin-bottom:-1px;
+  }
+  .tab.active{color:var(--lavender-dark);border-bottom-color:var(--lavender-dark)}
+  .tab:hover:not(.active){color:var(--dark)}
+  .products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem}
+  .product-card{
+    border-radius:16px;overflow:hidden;
+    border:1px solid var(--cream);
+    background:var(--white);
+    transition:all .25s;cursor:pointer;
+  }
+  .product-card:hover{
+    border-color:var(--lavender);
+    transform:translateY(-4px);
+    box-shadow:0 8px 30px rgba(200,181,238,.2);
+  }
+  .product-img{
+    height:190px;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--cream);
+    position:relative;
+  }
+  .product-img i{font-size:4.5rem;color:var(--lavender-dark);opacity:.7}
+  .product-badge{
+    position:absolute;top:10px;left:10px;
+    background:var(--dark);color:var(--white);
+    font-size:.7rem;font-weight:600;letter-spacing:.04em;
+    padding:.2rem .6rem;border-radius:100px;
+  }
+  .product-badge.novo{background:var(--lavender-dark)}
+  .product-wishlist{
+    position:absolute;top:10px;right:10px;
+    width:32px;height:32px;border-radius:50%;
+    background:var(--white);border:1px solid var(--cream);
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.05rem;color:var(--dark-soft);
+    cursor:pointer;transition:all .2s;
+  }
+  .product-wishlist:hover{color:var(--lavender-dark);border-color:var(--lavender)}
+  .product-info{padding:1rem 1.1rem 1.25rem}
+  .product-brand{font-size:.75rem;color:var(--dark-soft);font-weight:500;letter-spacing:.04em;text-transform:uppercase;margin-bottom:.25rem}
+  .product-name{font-size:.9rem;font-weight:500;line-height:1.4;margin-bottom:.5rem}
+  .product-stars{color:var(--lavender-dark);font-size:.8rem;margin-bottom:.6rem;display:flex;align-items:center;gap:.25rem}
+  .product-stars span{color:var(--dark-soft)}
+  .product-price{display:flex;align-items:baseline;gap:.5rem}
+  .price-main{font-size:1.1rem;font-weight:600;color:var(--dark)}
+  .price-old{font-size:.8rem;color:var(--dark-soft);text-decoration:line-through}
+  .product-add{
+    width:100%;margin-top:.75rem;
+    padding:.65rem;border-radius:8px;
+    background:var(--dark);color:var(--white);
+    border:none;cursor:pointer;font-size:.8rem;font-weight:500;
+    transition:background .2s;
+    display:flex;align-items:center;justify-content:center;gap:.4rem;
+  }
+  .product-add:hover{background:var(--lavender-dark)}
+ 
+  /* BANNERS */
+  .banner-section{padding:3rem 3.5rem;background:var(--cream)}
+  .banners{display:grid;grid-template-columns:1.5fr 1fr;gap:1.5rem}
+  .banner{border-radius:20px;padding:2.5rem 2rem;overflow:hidden;position:relative}
+  .banner-main{background:var(--lavender);color:var(--dark)}
+  .banner-side{background:var(--dark);color:var(--white);display:flex;flex-direction:column;justify-content:space-between}
+  .banner-tag{
+    font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+    opacity:.7;margin-bottom:.75rem;
+  }
+  .banner h2{
+    font-family:'Playfair Display',serif;
+    font-size:1.8rem;font-weight:600;line-height:1.2;margin-bottom:.75rem;
+  }
+  .banner p{font-size:.875rem;opacity:.8;line-height:1.6;margin-bottom:1.5rem}
+  .banner-icon{
+    position:absolute;right:2rem;bottom:1.5rem;
+    opacity:.2;
+  }
+  .banner-icon i{font-size:6rem;color:var(--dark)}
+  .banner-side .banner-icon i{color:var(--white)}
+  .btn-banner-white{
+    background:var(--white);color:var(--dark);
+    padding:.65rem 1.5rem;border-radius:100px;
+    font-size:.8rem;font-weight:600;border:none;cursor:pointer;
+    width:fit-content;transition:opacity .2s;
+    display:inline-flex;align-items:center;gap:.4rem;
+  }
+  .btn-banner-white:hover{opacity:.85}
+  .btn-banner-lav{
+    background:var(--lavender);color:var(--dark);
+    padding:.65rem 1.5rem;border-radius:100px;
+    font-size:.8rem;font-weight:600;border:none;cursor:pointer;
+    width:fit-content;transition:opacity .2s;
+    display:inline-flex;align-items:center;gap:.4rem;
+  }
+  .btn-banner-lav:hover{opacity:.85}
+ 
+  /* NEWSLETTER */
+  .newsletter{
+    background:var(--dark);color:var(--white);
+    padding:4rem 3.5rem;
+    display:flex;align-items:center;justify-content:space-between;gap:3rem;
+  }
+  .newsletter-left{display:flex;align-items:center;gap:1.5rem}
+  .newsletter-icon-wrap{
+    width:56px;height:56px;border-radius:14px;
+    background:rgba(200,181,238,.15);
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+  .newsletter-icon-wrap i{font-size:1.75rem;color:var(--lavender)}
+  .newsletter h2{font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:600;margin-bottom:.4rem}
+  .newsletter p{font-size:.9rem;opacity:.65;max-width:380px}
+  .newsletter-form{display:flex;gap:.75rem;flex:1;max-width:420px}
+  .newsletter-input{
+    flex:1;padding:.8rem 1.25rem;
+    border-radius:100px;border:1.5px solid rgba(255,255,255,.2);
+    background:rgba(255,255,255,.07);color:var(--white);
+    font-size:.9rem;outline:none;
+    font-family:'DM Sans',sans-serif;
+  }
+  .newsletter-input::placeholder{color:rgba(255,255,255,.4)}
+  .newsletter-input:focus{border-color:var(--lavender)}
+  .btn-lav{
+    background:var(--lavender);color:var(--dark);
+    padding:.8rem 1.75rem;border-radius:100px;
+    border:none;cursor:pointer;font-weight:600;font-size:.875rem;
+    white-space:nowrap;transition:background .2s;
+    font-family:'DM Sans',sans-serif;
+  }
+  .btn-lav:hover{background:var(--lavender-light)}
+ 
+  /* FOOTER */
+  footer{
+    background:var(--dark);color:rgba(255,255,255,.55);
+    padding:3rem 3.5rem 2rem;
+    border-top:1px solid rgba(255,255,255,.06);
+  }
+  .footer-grid{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:2.5rem;margin-bottom:2.5rem}
+  .footer-brand .logo{color:var(--white);display:block;margin-bottom:.75rem}
+  .footer-brand p{font-size:.85rem;line-height:1.7;margin-bottom:1.25rem}
+  .footer-socials{display:flex;gap:.6rem}
+  .footer-social-btn{
+    width:34px;height:34px;border-radius:8px;
+    border:1px solid rgba(255,255,255,.12);
+    display:flex;align-items:center;justify-content:center;
+    color:rgba(255,255,255,.5);font-size:1.1rem;
+    transition:all .2s;cursor:pointer;
+  }
+  .footer-social-btn:hover{background:var(--lavender-dark);border-color:var(--lavender-dark);color:#fff}
+  .footer-col h4{
+    color:var(--white);font-size:.85rem;font-weight:600;
+    letter-spacing:.06em;text-transform:uppercase;
+    margin-bottom:1rem;
+  }
+  .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+  .footer-col ul li a{
+    font-size:.85rem;transition:color .2s;
+    display:flex;align-items:center;gap:.4rem;
+  }
+  .footer-col ul li a:hover{color:var(--lavender-light)}
+  .footer-col ul li a i{font-size:.9rem;opacity:.6}
+  .footer-bottom{
+    border-top:1px solid rgba(255,255,255,.06);
+    padding-top:1.5rem;
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:.8rem;flex-wrap:wrap;gap:.75rem;
+  }
+  .footer-bottom-right{display:flex;align-items:center;gap:.4rem}
+  .footer-bottom-right i{color:var(--lavender);font-size:1rem}
+ 
+  /* SCROLL SUAVE */
+  html{scroll-behavior:smooth}
+</style>
+</head>
+<body>
+ 
+<!-- ===== NAVEGAÇÃO ===== -->
+<nav>
+  <div class="logo">Ed <span>Cosméticos</span></div>
+ 
+  <div class="nav-links">
+    <a href="#">Cabelo</a>
+    <a href="#">Rosto</a>
+    <a href="#">Corpo</a>
+    <a href="#">Acessórios</a>
+    <a href="#">Promoções</a>
+  </div>
+ 
+  <div class="nav-icons">
+    <button class="nav-icon-btn" aria-label="Buscar">
+      <i class="bx bx-search"></i>
+    </button>
+    <button class="nav-icon-btn" aria-label="Favoritos">
+      <i class="bx bx-heart"></i>
+    </button>
+    <div class="cart-wrap">
+      <button class="nav-icon-btn" aria-label="Carrinho">
+        <i class="bx bx-shopping-bag"></i>
+      </button>
+      <span class="cart-badge">3</span>
+    </div>
+  </div>
+</nav>
+ 
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-text">
+    <span class="hero-badge">
+      <i class="bx bx-sparkles"></i>
+      Nova coleção disponível
+    </span>
+    <h1>Onde a <em> beleza </em> não tem limites!</h1>
+    <p>Descubra os melhores produtos de cosméticos aqui mesmo. Qualidade e carinho em cada detalhe.</p>
+    <div class="hero-ctas">
+      <button class="btn-primary">
+        Explorar produtos
+        <i class="bx bx-right-arrow-alt"></i>
+      </button>
+      <button class="btn-outline">Ver promoções</button>
+    </div>
+  </div>
+ 
+  <div class="hero-visual">
+    <div class="hero-deco hero-deco-1"></div>
+    <div class="hero-deco hero-deco-2"></div>
+    <div class="hero-visual-inner">
+      <div class="hero-circle">
+        <div class="hero-circle-inner">
+          <img src="logo.jpg" alt="Ed Cosméticos" style="width:130px;height:130px;object-fit:contain;border-radius:50%;">
+        </div>
+      </div>
+    </div>
+    <div class="hero-float-tag hero-float-1">
+      <span class="dot"></span>
+      Mais de 500 produtos
+    </div>
+    <div class="hero-float-tag hero-float-2">
+      <span class="dot"></span>
+      Frete grátis acima de R$100
+    </div>
+  </div>
+</section>
+ 
+<!-- ===== CATEGORIAS ===== -->
+<section class="section">
+  <div class="section-header">
+    <h2 class="section-title">Categorias</h2>
+    <a class="section-link">Ver todas <i class="bx bx-right-arrow-alt"></i></a>
+  </div>
+  <div class="cats">
+    <div class="cat-card">
+      <div class="cat-icon"><i class="bx bx-spa"></i></div>
+      <div class="cat-name">Cuidados com Cabelo</div>
+      <div class="cat-count">128 produtos</div>
+    </div>
+    <div class="cat-card">
+      <div class="cat-icon"><i class="bx bx-face"></i></div>
+      <div class="cat-name">Cuidados com Rosto</div>
+      <div class="cat-count">94 produtos</div>
+    </div>
+    <div class="cat-card">
+      <div class="cat-icon"><i class="bx bx-droplet"></i></div>
+      <div class="cat-name">Corpo & Bem-estar</div>
+      <div class="cat-count">76 produtos</div>
+    </div>
+    <div class="cat-card">
+      <div class="cat-icon"><i class="bx bx-brush"></i></div>
+      <div class="cat-name">Acessórios</div>
+      <div class="cat-count">52 produtos</div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ===== PRODUTOS ===== -->
+<section class="products-section">
+  <div class="section-header">
+    <h2 class="section-title">Produtos em Destaque</h2>
+    <a class="section-link">Ver catálogo <i class="bx bx-right-arrow-alt"></i></a>
+  </div>
+ 
+  <div class="tabs">
+    <button class="tab active">Mais Vendidos</button>
+    <button class="tab">Novidades</button>
+    <button class="tab">Ofertas</button>
+    <button class="tab">Mais Avaliados</button>
+  </div>
+ 
+  <div class="products-grid">
+    <!-- Produto 1 -->
+    <div class="product-card">
+      <div class="product-img">
+        <i class="bx bx-test-tube"></i>
+        <span class="product-badge novo">Novo</span>
+        <button class="product-wishlist" aria-label="Favoritar">
+          <i class="bx bx-heart"></i>
+        </button>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">Kerastase</div>
+        <div class="product-name">Máscara Nutritive Bain Satin</div>
+        <div class="product-stars">
+          <i class="bx bxs-star"></i><i class="bx bxs-star"></i>
+          <i class="bx bxs-star"></i><i class="bx bxs-star"></i>
+          <i class="bx bxs-star"></i>
+          <span>(42)</span>
+        </div>
+        <div class="product-price">
+          <span class="price-main">R$ 89,90</span>
+          <span class="price-old">R$ 119,90</span>
+        </div>
+        <button class="product-add">
+          <i class="bx bx-cart-add"></i>
+          Adicionar ao carrinho
+        </button>
+      </div>
+    </div>
+ 
+    <!-- Produto 2 -->
+    <div class="product-card">
+      <div class="product-img">
+        <i class="bx bx-droplet"></i>
+        <span class="product-badge">-25%</span>
+        <button class="product-wishlist" aria-label="Favoritar">
+          <i class="bx bx-heart"></i>
+        </button>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">La Roche-Posay</div>
+        <div class="product-name">Hidratante Facial Effaclar</div>
+        <div class="product-stars">
+          <i class="bx bxs-star"></i><i class="bx bxs-star"></i>
+          <i class="bx bxs-star"></i><i class="bx bxs-star"></i>
+          <i class="bx bx-star"></i>
+          <span>(87)</span>
+        </div>
+        <div class="product-price">
+          <span class="price-main">R$ 67,50</span>
+          <span class="price-old">R$ 89,90</span>
+        </div>
+        <button class="product-add">
+          <i class="bx bx-cart-add"></i>
+          Adicionar ao carrinho
+        </button>
+      </div>
+    </div>
+ 
+    <!-- Produto 3 -->
+    <div class="product-card">
+      <div class="product-img">
+        <i class="bx bx-diamond"></i>
+        <button class="product-wishlist" aria-label="Favoritar">
+          <i class="bx bx-heart"></i>
+        </button>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">Natura</div>
+        <div class="product-name">Sérum Antienvelhecimento Tododia</div>
+        <div class="product-stars">
+          <i class="bx bxs-star"></i><i class="bx bxs-star"></i>
+          <i class="bx bxs-star"></i><i class="bx bxs-star"></i>
+          <i class="bx bxs-star"></i>
+          <span>(156)</span>
+        </div>
+        <div class="product-price">
+          <span class="price-main">R$ 54,90</span>
+        </div>
+        <button class="product-add">
+          <i class="bx bx-cart-add"></i>
+          Adicionar ao carrinho
+        </button>
+      </div>
+    </div>
+ 
+    <!-- Produto 4 -->
+    <div class="product-card">
+      <div class="product-img">
+        <i class="bx bx-spray-can"></i>
+        <span class="product-badge novo">Novo</span>
+        <button class="product-wishlist" aria-label="Favoritar">
+          <i class="bx bx-heart"></i>
+        </button>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">OX Cosméticos</div>
+        <div class="product-name">Leave-in Reconstrução Intensa</div>
+        <div class="product-stars">
+          <i class="bx bxs-star"></i><i class="bx bxs-star"></i>
+          <i class="bx bxs-star"></i><i class="bx bxs-star"></i>
+          <i class="bx bx-star"></i>
+          <span>(29)</span>
+        </div>
+        <div class="product-price">
+          <span class="price-main">R$ 32,90</span>
+          <span class="price-old">R$ 42,90</span>
+        </div>
+        <button class="product-add">
+          <i class="bx bx-cart-add"></i>
+          Adicionar ao carrinho
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ===== BANNERS PROMOS ===== -->
+<section class="banner-section">
+  <div class="banners">
+    <div class="banner banner-main">
+      <div class="banner-tag">Oferta da semana</div>
+      <h2>Até 40% OFF em produtos para cabelo</h2>
+      <p>Aproveite nossa seleção especial com os melhores produtos para tratamento e hidratação capilar.</p>
+      <button class="btn-banner-white">
+        Aproveitar oferta
+        <i class="bx bx-right-arrow-alt"></i>
+      </button>
+      <div class="banner-icon"><i class="bx bx-spa"></i></div>
+    </div>
+ 
+    <div class="banner banner-side">
+      <div>
+        <div class="banner-tag">Programa de Fidelidade</div>
+        <h2>Acumule pontos a cada compra</h2>
+        <p style="font-size:.85rem;opacity:.65;line-height:1.5;margin-bottom:1.5rem">
+          Troque por produtos e descontos exclusivos para clientes especiais.
+        </p>
+      </div>
+      <button class="btn-banner-lav">
+        Saiba mais
+        <i class="bx bx-right-arrow-alt"></i>
+      </button>
+      <div class="banner-icon"><i class="bx bx-award"></i></div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ===== NEWSLETTER ===== -->
+<section class="newsletter">
+  <div class="newsletter-left">
+    <div class="newsletter-icon-wrap">
+      <i class="bx bx-envelope"></i>
+    </div>
+    <div>
+      <h2>Fique por dentro das novidades</h2>
+      <p>Receba promoções exclusivas, lançamentos e dicas de beleza direto no seu e-mail.</p>
+    </div>
+  </div>
+  <div class="newsletter-form">
+    <input type="email" class="newsletter-input" placeholder="Seu melhor e-mail...">
+    <button class="btn-lav">Assinar</button>
+  </div>
+</section>
+ 
+<!-- ===== RODAPÉ ===== -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="logo">Ed <span>Cosméticos</span></span>
+      <p>Onde a beleza não tem limites!</p>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/edcosmeticoseverinia/" class="footer-social-btn" aria-label="Instagram">
+          <i class="bx bxl-instagram"></i>
+        </a>
+        <a href="https://api.whatsapp.com/send?phone=5517996822135&text=" class="footer-social-btn" aria-label="WhatsApp">
+          <i class="bx bxl-whatsapp"></i>
+        </a>
+      </div>
+    </div>
+ 
+    <div class="footer-col">
+      <h4>Produtos</h4>
+      <ul>
+        <li><a href="#"><i class="bx bx-chevron-right"></i>Cabelo</a></li>
+        <li><a href="#"><i class="bx bx-chevron-right"></i>Rosto</a></li>
+        <li><a href="#"><i class="bx bx-chevron-right"></i>Corpo</a></li>
+        <li><a href="#"><i class="bx bx-chevron-right"></i>Acessórios</a></li>
+        <li><a href="#"><i class="bx bx-chevron-right"></i>Papelaria</a></li>
+      </ul>
+    </div>
+ 
+    <div class="footer-col">
+      <h4>Institucional</h4>
+      <ul>
+        <li><a href="#"><i class="bx bx-chevron-right"></i>Sobre nós</a></li>
+        <li><a href="#"><i class="bx bx-chevron-right"></i>Blog de beleza</a></li>
+        <li><a href="#"><i class="bx bx-chevron-right"></i>Trabalhe conosco</a></li>
+        <li><a href="#"><i class="bx bx-chevron-right"></i>Política de privacidade</a></li>
+      </ul>
+    </div>
+ 
+    <div class="footer-col">
+      <h4>Atendimento</h4>
+      <ul>
+        <li><a href="#"><i class="bx bx-chevron-right"></i>Central de ajuda</a></li>
+        <li><a href="#"><i class="bx bx-chevron-right"></i>Trocas e devoluções</a></li>
+        <li><a href="#"><i class="bx bx-chevron-right"></i>Acompanhar pedido</a></li>
+        <li><a href="#"><i class="bx bx-chevron-right"></i>Fale conosco</a></li>
+      </ul>
+    </div>
+  </div>
+ 
+  <div class="footer-bottom">
+    <span>© 2021 ED COSMETICOS INDUSTRIA E COMERCIO LTDA - EPP. Todos os direitos reservados.</span>
+    <div class="footer-bottom-right">
+      Feito com <i class="bx bxs-heart"></i> para cada cliente, por Edgar dos Santos, Luana Hermenegildo e Mirela Hermenegildo.
+    </div>
+  </div>
+</footer>
+ 
+<script>
+  // Tabs de produtos
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
+ 
+  // Botão de favoritar
+  document.querySelectorAll('.product-wishlist').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const icon = btn.querySelector('i');
+      if(icon.classList.contains('bx-heart')){
+        icon.classList.replace('bx-heart','bxs-heart');
+        icon.style.color = '#9e85d4';
+      } else {
+        icon.classList.replace('bxs-heart','bx-heart');
+        icon.style.color = '';
+      }
+    });
+  });
+</script>
+</body>
+</html>
+ 
